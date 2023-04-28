@@ -12,7 +12,7 @@ autoSwitchAppearance = true
 enableSearch = true
 enableCodeCopy = true
 
-mainSections = ["posts"]
+mainSections = ["posts", "courses"]
 # robots = ""
 
 disableImageOptimization = false
@@ -40,7 +40,7 @@ smartTOCHideUnfocusedChildren = true
   showRecentItems = 10
   showMoreLink = true
   showMoreLinkDest = "posts"
-  cardView = false
+  cardView = true
   cardViewScreenWidth = false
   layoutBackgroundBlur = true # only used when layout equals background
 
@@ -109,10 +109,10 @@ smartTOCHideUnfocusedChildren = true
   groupByYear = false
   cardView = true
   cardViewScreenWidth = false
-  
+
 
 # [firebase]
-#   apiKey = "AIzaSyB5tqlqDky77Vb4Tc4apiHV4hRZI18KGiY"
+#   apiKey = ""
 #   authDomain = "blowfish-21fff.firebaseapp.com"
 #   projectId = "blowfish-21fff"
 #   storageBucket = "blowfish-21fff.appspot.com"

@@ -15,42 +15,15 @@
   pageRef = "posts"
   weight = 10
 
-# [[main]]
-#   name = "Examples"
-#   weight = 20
-#
-# [[main]]
-#   name = "Recipes"
-#   parent = "Examples"
-#   pageRef = "guides"
-#   weight = 10
-#
-# [[main]]
-#   name = "Samples"
-#   parent = "Examples"
-#   pageRef = "samples"
-#   weight = 20
-#
-# [[main]]
-#   name = "Showcase"
-#   parent = "Examples"
-#   pageRef = "examples"
-#   weight = 30
+[[main]]
+  name = "Courses"
+  pageRef = "courses"
+  weight = 20
 
-# [[main]]
-#   name = "Users"
-#   pageRef = "users"
-#   weight = 40
-
-# [[main]]
-#   name = "Merch"
-#   url = "http://tee.pub/lic/qwSlWVBL5zc"
-#   weight = 50
-
-#[[main]]
-#  name = "Test"
-#  pageRef = "pagTest"
-#  weight = 1000
+[[main]]
+  parent = "Courses"
+  name = "Scala"
+  pageRef = "Courses/Scala"
 
 [[main]]
   identifier = "github"
@@ -62,13 +35,13 @@
   identifier = "twitter"
   pre = "twitter"
   url = "https://twitter.com/mattmoore_io"
-  weight = 60
+  weight = 90
 
 [[main]]
   identifier = "mastodon"
   pre = "mastodon"
   url = "https://masto.ai/@mattmoore"
-  weight = 70
+  weight = 100
 
 
 # -- Footer Menu --

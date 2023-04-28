@@ -1,11 +1,11 @@
 ---
-title: "Scala 3 Introduction"
+title: "Introduction to Scala 3"
 date: 2023-04-28T06:41:02-04:00
-draft: false
+draft: true
+courses:
+    - "Scala"
 authors:
     - "mattmoore"
-tags:
-    - "scala"
 ---
 
 This is a test intro post on Scala 3.

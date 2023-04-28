@@ -24,6 +24,8 @@ buildFuture = false
   tag = "tags"
   category = "categories"
   author = "authors"
+  posts = "posts"
+  courses = "Courses"
   series = "series"
 
 [sitemap]
