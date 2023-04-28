@@ -1,0 +1,7 @@
+baseURL = 'https://mattmoore.io/'
+languageCode = 'en-us'
+title = 'Matt Moore'
+theme = 'blowfish'
+
+[author]
+image = 'images/me.png'
