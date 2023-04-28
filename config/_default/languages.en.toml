@@ -20,5 +20,5 @@ dateFormat = "2 January 2006"
   links = [
     { github = "https://github.com/mattmoore" },
     { twitter = "https://twitter.com/mattmoore_io" },
-    { mastodon = "https://masto.ai/@blowfish" },
+    { mastodon = "https://masto.ai/@mattmoore" },
   ]
