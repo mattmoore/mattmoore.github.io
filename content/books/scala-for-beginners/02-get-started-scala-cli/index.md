@@ -1,13 +1,9 @@
 ---
-title: "Using scala-cli"
-date: 2023-04-28T09:58:25-04:00
+title: "Chapter 2: Installing Scala"
 draft: true
 authors:
     - "mattmoore"
-courses:
-    - "Scala"
-tags:
-    - "scala-cli"
+books: ["Scala for Beginners"]
 ---
 
 ## Introduction
@@ -15,6 +11,8 @@ tags:
 Traditionally Scala projects have been built using <mark>sbt</mark>. There is another build tool on the block called <mark>mill</mark> which will be reserved for another post.
 
 One of the complaints about Scala, especially among newcomers, is difficulty with rapidly firing up Scala files or scripts to be able to test or experiment with the language. To improve upon this, there is a new tool available called <mark>scala-cli</mark>.
+
+Throughout this book, we will be using <mark>scala-cli</mark> to keep things simple and focus on the language concepts.
 
 ## scala-cli
 
@@ -29,22 +27,3 @@ For users on macOS with [homebrew](https://brew.sh), you can install Scala with 
 ```shell
 brew install coursier/formulas/coursier && cs setup
 ```
-
-{{<highlight scala "linenos=table">}}
-//> using scala "3.2.2"
-
-def testMatches(list: List[Int]): String =
-    list match
-        case Nil => "Empty list"
-        case head +: Nil  => "Has one item"
-        case _ :+ tail    => s"Last item is $tail"
-        case head :: next => "Full list"
-    
-
-@main
-def main(args: String*) = {
-    println(testMatches(List()))
-    println(testMatches(List(1)))
-    println(testMatches(List(1, 2)))
-}
-{{</highlight>}}

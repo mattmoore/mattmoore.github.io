@@ -16,14 +16,14 @@
   weight = 10
 
 [[main]]
-  name = "Courses"
-  pageRef = "courses"
+  name = "Books"
+  pageRef = "Books"
   weight = 20
 
 [[main]]
-  parent = "Courses"
-  name = "Scala"
-  pageRef = "Courses/Scala"
+  parent = "Books"
+  name = "Scala for Beginners"
+  pageRef = "books/scala-for-beginners"
 
 [[main]]
   identifier = "github"
