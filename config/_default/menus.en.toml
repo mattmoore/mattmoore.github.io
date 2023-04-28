@@ -53,6 +53,12 @@
 #  weight = 1000
 
 [[main]]
+  identifier = "github"
+  pre = "github"
+  url = "https://github.com/mattmoore"
+  weight = 80
+
+[[main]]
   identifier = "twitter"
   pre = "twitter"
   url = "https://twitter.com/mattmoore_io"
@@ -63,12 +69,6 @@
   pre = "mastodon"
   url = "https://masto.ai/@mattmoore"
   weight = 70
-
-[[main]]
-  identifier = "github"
-  pre = "github"
-  url = "https://github.com/mattmoore"
-  weight = 80
 
 
 # -- Footer Menu --

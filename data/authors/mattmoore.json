@@ -1,11 +1,11 @@
 {
     "name": "Matt Moore",
     "image" : "images/me.jpg",
-    "bio": "Engineer",
+    "bio": "Lead Engineer at Xebia Functional",
     "social": [
+        { "github": "https://github.com/mattmoore" },
         { "linkedin": "https://linkedin.com/in/mattmoore_io" },
         { "twitter": "https://twitter.com/mattmoore_io" },
-        { "mastodon": "https://masto.ai/@mattmoore" },
-        { "github": "https://github.com/mattmoore" }
+        { "mastodon": "https://masto.ai/@mattmoore" }
     ]
 }
