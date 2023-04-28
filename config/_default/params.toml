@@ -17,7 +17,7 @@ mainSections = ["posts"]
 
 disableImageOptimization = false
 
-defaultBackgroundImage = "/images/bg.jpg"
+defaultBackgroundImage = "images/rocket-ai.jpeg"
 
 highlightCurrentMenuArea = true
 smartTOC = true
