@@ -3,7 +3,7 @@
 # https://blowfish.page/docs/getting-started/
 
 theme = "blowfish"
-baseURL = "https://mattmoore.github.io"
+baseURL = "https://mattmoore.io"
 defaultContentLanguage = "en"
 
 # pluralizeListTitles = "true" # hugo function useful for non-english languages, find out more in  https://gohugo.io/getting-started/configuration/#pluralizelisttitles
@@ -25,7 +25,7 @@ buildFuture = false
   category = "categories"
   author = "authors"
   posts = "posts"
-  books = "Books"
+  series = "series"
 
 [sitemap]
   changefreq = 'always'

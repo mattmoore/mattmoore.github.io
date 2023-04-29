@@ -1,9 +1,11 @@
 ---
-title: "Chapter 2: Installing Scala"
-draft: true
+title: "Installing Scala"
+date: 2023-04-28T21:53:16-04:00
+draft: false
 authors:
     - "mattmoore"
-books: ["Scala for Beginners"]
+series: ["Scala for Beginners"]
+series_order: 2
 ---
 
 ## Introduction
