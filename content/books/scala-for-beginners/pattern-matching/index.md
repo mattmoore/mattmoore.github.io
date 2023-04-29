@@ -2,7 +2,7 @@
 title: "Pattern Matching"
 date: 2023-04-29T16:24:30-04:00
 draft: false
-series: ["ScalaForBeginners"]
+series: ["Scala for Beginners"]
 series_order: 5
 ---
 
