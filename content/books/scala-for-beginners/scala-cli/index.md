@@ -1,6 +1,7 @@
 ---
 title: "Using scala-cli"
-date: 2023-04-29T16:24:30-04:00
+summary: "Running the Scala REPL as well as programs in script files."
+date: 2023-04-29T19:14:23-04:00
 draft: false
 series: ["Scala for Beginners"]
 series_order: 3

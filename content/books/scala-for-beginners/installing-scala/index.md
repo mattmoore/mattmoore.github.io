@@ -1,6 +1,7 @@
 ---
 title: "Installing Scala"
-date: 2023-04-29T12:49:54-04:00
+summary: "How to get Scala installed and running locally."
+date: 2023-04-29T19:14:10-04:00
 draft: false
 series: ["Scala for Beginners"]
 series_order: 2
