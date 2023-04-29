@@ -1,11 +1,11 @@
 ---
 title: "Pattern Matching"
-date: 2023-04-28T21:53:16-04:00
+date: 2023-04-29T16:24:30-04:00
 draft: false
-authors:
-    - "mattmoore"
-series: ["Scala for Beginners"]
-series_order: 4
+series: ["ScalaForBeginners"]
+series_order: 5
 ---
 
-Pattern matching chapter.
+# Pattern Matching
+
+Scala has first-class support for pattern matching.

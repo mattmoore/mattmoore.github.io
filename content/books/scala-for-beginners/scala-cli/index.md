@@ -1,9 +1,9 @@
 ---
-title: "Book Project"
+title: "Using scala-cli"
 date: 2023-04-29T16:24:30-04:00
 draft: false
 series: ["Scala for Beginners"]
-series_order: 4
+series_order: 3
 ---
 
 ## What is scala-cli?

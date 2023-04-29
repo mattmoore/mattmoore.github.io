@@ -1,9 +1,8 @@
 ---
-title: "Introduction to Scala"
-date: 2023-04-28T21:53:16-04:00
+title: "Introduction"
+date: 2023-04-29T12:48:35-04:00
 draft: false
-authors:
-    - "mattmoore"
 series: ["Scala for Beginners"]
 series_order: 1
 ---
+
