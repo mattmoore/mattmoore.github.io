@@ -1,6 +1,5 @@
 ---
-title: "Site Reboot"
-summary: "It's time to reboot my website."
+title: "It's time to reboot my website"
 date: 2023-04-29T20:26:25-04:00
 draft: false
 ---
@@ -11,7 +10,7 @@ So that's all about time, but there were a few other things that were making thi
 
 However, Square Space became difficult after a while, because it didn't suite my preferences for authoring content. I have a nice MBP, but it's a 16" MBP and can be rather large to lug around if I want to write on the couch. I recently picked up an iPad Pro 12.9" and got the Apple Magic Keyboard case (the one with the trackpad). I really like this setup - it's great for writing on. However, authoring a Square Space site where I want to write a lot of code snippets is rather unbearably impossible to do well on an iPad.
 
-I'd known there are a variety of static website tools out there - but I never really looked into them. I was mainly aware of Jekyll. But I wasn't super impressed with Jekyll. It lacked a lot of functionality I wanted and most of the themes out there for personal sites were pretty plain and uninteresting.
+I'd known there are a variety of static website tools out there - but I never really looked into them. I was mainly aware of Jekyll but I wasn't super impressed with it. It lacked a lot of functionality I wanted and most of the themes out there for personal sites were pretty plain and uninteresting.
 
 So I took the time to sit down and look at some of the newer/nicer tools. I discovered Hugo, which I spent a number of hours exploring. It has a couple of oddities, but overall seemed like the best tool that fit all my needs quite nicely. The themes out there are much nicer imho, and I particularly liked the blowfish theme, so that's what I'm on now.
 
