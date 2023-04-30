@@ -1,6 +1,19 @@
 ---
 title: "Scala 3 Book Announcement"
-date: 2023-04-29T19:34:35-04:00
+date: 2023-04-29T20:38:26-04:00
 draft: true
 ---
 
+## Why I'm writing a book on Scala
+
+I love Scala. It has a lot of powerful ways to handle various advanced coding challenges. Pattern matching, type classes, method extensions (Scala 3) and a slew of useful abstraction methodologies.
+
+## Scala's reputation
+
+With all of the amazing power Scala offers, many uninitiated engineers I'ved talked to complain that it's too difficult to learn. I don't think this is true, however. I think the problem is that most tutorials - and Scala in particular - tend to have a lot of toy examples and not much in the way of a pragmatic project to examine.
+
+## The intended audience
+
+To this end, I'm writing my own book on Scala 3. The intended audience is beginners to the language, though you're expected to know how to program. If you're coming from Kotlin or Java, this should be particularly easy to follow. If you're a Pythonista or Rubyist, no worries, you should still be able to pick up Scala fairly easily.
+
+It is still a work in progress, but as I finish each chapter, I will publish it.
