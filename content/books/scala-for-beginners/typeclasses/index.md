@@ -7,5 +7,31 @@ series: ["Scala for Beginners"]
 series_order: 6
 ---
 
-# Type Classes
+## What is a type class?
 
+A type class is a method for achieving what is called "ad-hoc polymorphism".
+
+### Ad-hoc polymorphism
+
+```go {linenos=table}
+//> using scala "3.2.2"
+
+// Type Class
+trait Show[A] {
+  extension(a: A) def show: String
+}
+
+case class Person(firstName: String, lastName: String)
+
+// Type Class instance via given
+given Show[Person] with {
+  extension(p: Person) def show: String =
+    s"${p.firstName} ${p.lastName}"
+}
+
+@main
+def main(args: String*) = {
+  val person = Person("Matt", "Moore")
+  println(person.show)
+}
+```

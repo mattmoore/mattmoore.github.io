@@ -7,9 +7,17 @@ series: ["Scala for Beginners"]
 series_order: 5
 ---
 
-# Pattern Matching
+## Introduction to pattern matching
 
 Scala has first-class support for pattern matching.
+
+### Guard clauses
+
+```go {linenos=table}
+
+```
+
+### Matching on lists
 
 ```go {linenos=table}
 //> using scala "3.2.2"
