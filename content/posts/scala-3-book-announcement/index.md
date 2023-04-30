@@ -1,12 +1,14 @@
 ---
 title: "Scala 3 Book Announcement"
-date: 2023-04-29T20:38:26-04:00
-draft: true
+date: 2023-04-29T21:00:38-04:00
+draft: false
+tags:
+    - "scala"
 ---
 
 ## Why I'm writing a book on Scala
 
-I love Scala. It has a lot of powerful ways to handle various advanced coding challenges. Pattern matching, type classes, method extensions (Scala 3) and a slew of useful abstraction methodologies.
+I love Scala. It has a lot of powerful ways to handle various advanced coding challenges. Pattern matching, type classes, method extensions (Scala 3) and a slew of useful abstraction methodologies. But there aren't a lot of good introductory resources walking newcomers to the language understand how to build an app from start to finish in a pragmatic way.
 
 ## Scala's reputation
 
