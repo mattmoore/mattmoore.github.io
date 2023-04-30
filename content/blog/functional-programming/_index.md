@@ -1,10 +1,10 @@
 ---
-title: "Technology"
+title: "💻 Functional Programming"
 date: 2022-06-13T20:55:37+01:00
 draft: false
 menu:
     main:
-        parent: "Blog"
+        parent: "🗒️ Blog"
         weight: 20
 
 showDate : false

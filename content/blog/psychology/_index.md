@@ -1,11 +1,11 @@
 ---
-title: "Psychology"
+title: "🧠 Psychology"
 date: 2022-06-13T20:55:37+01:00
 draft: false
 menu:
     main:
-        parent: "Blog"
-        weight: 30
+        parent: "🗒️ Blog"
+        weight: 40
 
 showDate : false
 showDateUpdated : false

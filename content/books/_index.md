@@ -1,6 +1,7 @@
 ---
-title: "All Books"
+title: "📚 All Books"
 menu:
     main:
-        parent: "Books"
+        parent: "📚 Books"
+        weight: 10
 ---
