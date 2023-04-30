@@ -11,8 +11,8 @@
 # ordered by weight from lowest to highest.
 
 [[main]]
-  name = "Posts"
-  pageRef = "posts"
+  name = "Blog"
+  pageRef = "blog"
   weight = 10
 
 [[main]]
@@ -21,27 +21,22 @@
   weight = 20
 
 [[main]]
-  parent = "Books"
-  name = "Scala for Beginners"
-  pageRef = "books/scala-for-beginners"
-
-[[main]]
   identifier = "github"
   pre = "github"
   url = "https://github.com/mattmoore"
-  weight = 80
+  weight = 30
 
 [[main]]
   identifier = "twitter"
   pre = "twitter"
   url = "https://twitter.com/mattmoore_io"
-  weight = 90
+  weight = 40
 
 [[main]]
   identifier = "mastodon"
   pre = "mastodon"
   url = "https://masto.ai/@mattmoore"
-  weight = 100
+  weight = 50
 
 
 # -- Footer Menu --

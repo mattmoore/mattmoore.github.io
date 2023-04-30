@@ -1,6 +1,9 @@
 ---
 title: "Scala for Beginners"
 draft: false
+menu:
+    main:
+        parent: "Books"
 ---
 
 Learn Scala 3 in a pragmatic way by building a more realistic app instead of toy examples.
