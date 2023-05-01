@@ -42,6 +42,12 @@
   url = "https://twitter.com/mattmoore_io"
   weight = 50
 
+[[main]]
+  identifier = "linkedin"
+  pre = "linkedin"
+  url = "https://www.linkedin.com/in/mattmooreio"
+  weight = 60
+
 
 # [[main]]
 #   identifier = "mastodon"
