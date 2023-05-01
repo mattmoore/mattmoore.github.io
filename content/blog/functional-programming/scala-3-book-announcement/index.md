@@ -3,6 +3,8 @@ title: "Scala 3 Book Announcement"
 summary: "I love Scala, but there aren't a lot of good introductory resources for newcomers to the language. So I'm writing a book, focused on pragmatic solutions to real problems."
 date: 2023-04-29T21:00:38-04:00
 draft: false
+authors:
+    - "mattmoore"
 tags:
     - "scala"
 ---
