@@ -21,15 +21,20 @@
   weight = 20
 
 [[main]]
+  name = "🧑‍🏫 Talks"
+  pageRef = "talks"
+  weight = 30
+
+[[main]]
   name = "About Me"
   pageRef = "about"
-  weight = 30
+  weight = 40
 
 [[main]]
   identifier = "github"
   pre = "github"
   url = "https://github.com/mattmoore"
-  weight = 40
+  weight = 50
 
 [[main]]
   identifier = "twitter"
