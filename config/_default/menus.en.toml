@@ -32,11 +32,11 @@
   url = "https://twitter.com/mattmoore_io"
   weight = 40
 
-[[main]]
-  identifier = "mastodon"
-  pre = "mastodon"
-  url = "https://masto.ai/@mattmoore"
-  weight = 50
+# [[main]]
+#   identifier = "mastodon"
+#   pre = "mastodon"
+#   url = "https://masto.ai/@mattmoore"
+#   weight = 50
 
 
 # -- Footer Menu --
