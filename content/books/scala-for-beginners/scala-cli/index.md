@@ -4,7 +4,7 @@ summary: "Running the Scala REPL as well as programs in script files."
 date: 2023-04-29T19:14:23-04:00
 draft: true
 series: ["Scala for Beginners"]
-series_order: 3
+series_order: 4
 ---
 
 ## What is scala-cli?

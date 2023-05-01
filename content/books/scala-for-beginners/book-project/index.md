@@ -4,7 +4,7 @@ summary: "A lot of programming resources make use of \"toy\" examples. We're goi
 date: 2023-04-29T19:14:33-04:00
 draft: true
 series: ["Scala for Beginners"]
-series_order: 4
+series_order: 2
 ---
 
 ## A pragmatic approach to learning

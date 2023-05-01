@@ -4,7 +4,7 @@ summary: "How to get Scala installed and running locally."
 date: 2023-04-29T19:14:10-04:00
 draft: true
 series: ["Scala for Beginners"]
-series_order: 2
+series_order: 3
 ---
 
 ## Common build tools for Scala
