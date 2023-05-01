@@ -5,7 +5,6 @@
     "social": [
         { "github": "https://github.com/mattmoore" },
         { "linkedin": "https://linkedin.com/in/mattmoore_io" },
-        { "twitter": "https://twitter.com/mattmoore_io" },
-        { "mastodon": "https://masto.ai/@mattmoore" }
+        { "twitter": "https://twitter.com/mattmoore_io" }
     ]
 }

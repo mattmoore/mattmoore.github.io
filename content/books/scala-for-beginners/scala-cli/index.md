@@ -3,6 +3,8 @@ title: "Using scala-cli"
 summary: "Running the Scala REPL as well as programs in script files."
 date: 2023-04-29T19:14:23-04:00
 draft: true
+authors:
+    - "mattmoore"
 series: ["Scala for Beginners"]
 series_order: 4
 ---

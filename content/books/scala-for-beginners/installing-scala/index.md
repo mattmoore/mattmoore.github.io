@@ -3,6 +3,8 @@ title: "Installing Scala"
 summary: "How to get Scala installed and running locally."
 date: 2023-04-29T19:14:10-04:00
 draft: true
+authors:
+    - "mattmoore"
 series: ["Scala for Beginners"]
 series_order: 3
 ---
