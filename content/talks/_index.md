@@ -1,5 +1,5 @@
 ---
-title: "🧑‍🏫 All Talks"
+title: "All Talks"
 menu:
     main:
         parent: "🧑‍🏫 Talks"

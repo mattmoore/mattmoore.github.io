@@ -1,5 +1,5 @@
 ---
-title: "📚 All Books"
+title: "All Books"
 menu:
     main:
         parent: "📚 Books"
