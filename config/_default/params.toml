@@ -17,7 +17,7 @@ mainSections = ["blog"]
 
 disableImageOptimization = false
 
-defaultBackgroundImage = "images/rocket-ai.jpeg"
+defaultBackgroundImage = "images/sine-wave.png"
 
 highlightCurrentMenuArea = true
 smartTOC = true
@@ -81,9 +81,9 @@ smartTOCHideUnfocusedChildren = true
   showViews = false
   showLikes = false
   showTableOfContents = true
-  showCards = false
+  showCards = true
   groupByYear = false
-  cardView = false
+  cardView = true
   cardViewScreenWidth = false
   constrainItemsWidth = false
 

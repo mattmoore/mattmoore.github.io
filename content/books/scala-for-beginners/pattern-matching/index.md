@@ -15,13 +15,13 @@ Scala has first-class support for pattern matching.
 
 ### Guard clauses
 
-```go {linenos=table}
+```scala {linenos=table}
 
 ```
 
 ### Matching on lists
 
-```go {linenos=table}
+```scala {linenos=table}
 //> using scala "3.2.2"
 
 def testMatches(list: List[Int]): String =

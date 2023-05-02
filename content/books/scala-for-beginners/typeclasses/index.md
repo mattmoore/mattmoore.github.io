@@ -15,7 +15,7 @@ A type class is a method for achieving what is called "ad-hoc polymorphism".
 
 ### Ad-hoc polymorphism
 
-```go {linenos=table}
+```scala {linenos=table}
 //> using scala "3.2.2"
 
 // Type Class

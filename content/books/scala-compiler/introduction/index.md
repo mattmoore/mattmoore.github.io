@@ -146,7 +146,7 @@ Suppose you wanted to add some functionality to Scala itself that doesn’t curr
 
 Let’s write a program in Scala to divide by zero:
 
-```go {linenos=table}
+```scala
 object Test {
   val five = 5
   val amount = five / 0
@@ -162,7 +162,7 @@ If you compile this with scalac Test.scala and run it with scala Test, the compi
 
 First, create a new sbt project:
 
-```go
+```
 sbt new scala/scala-seed.g8
 ```
 You can fill in the details however you’d like. Take a look at the example plugin project I’ve created here. You can always use this as a starting point.
@@ -175,7 +175,7 @@ Key components you’ll need in your plugin project:
 
 {{< figure src="build.sbt.png" caption="You can adjust these details however you’d like. Note the name entry, however. This will need to match the name in the next file below." >}}
 
-```go
+```sbt
 name := "division-by-zero"
 version := "0.0.1-SNAPSHOT"
 scalaVersion := "2.13.5"
@@ -188,7 +188,7 @@ sbtPlugin := false
 
 {{< figure src="scalac-plugin.xml.png" caption="This file contains information used to generate the META-INF data for the plugin. Ensure the name and classname tags match correctly with the information in the build.sbt file above." >}}
 
-```go
+```xml
 <plugin>
   <name>division-by-zero</name>
   <classname>io.mattmoore.scala2.compiler.plugins.DivisionByZero</classname>
@@ -199,7 +199,7 @@ sbtPlugin := false
 
 {{< figure src="DivisionByZero.scala.png" caption="This is the actual compiler plugin. Note the package and name. These need to match the entries. in the scalar-plugin.xml file above, which in turn needs to match the build.sbt entries." >}}
 
-```go {linenos=table}
+```scala
 package io.mattmoore.scala2.compiler.plugins
 
 import scala.tools.nsc
@@ -239,13 +239,13 @@ class DivisionByZero(val global: Global) extends Plugin {
 
 There’s a lot going on in this file. We’ll examine it piece by piece. We’ve created an object called Component that extends PluginComponent, which is the underlying Scala class that represents a plugin.
 
-```go
+```scala
 private object Component extends PluginComponent
 ```
 
 Then we specify the phase it should run after. Remember the phases we listed earlier with the scalac -Xshow-phases command we ran earlier? For this plugin, we are running it after the refchecks phase. It’s out of the scope of this article to explain why. I’ll have to write up another post explaining the individual phases later. For now, just humor me.
 
-```go {linenos=table}
+```scala
 val global: DivisionByZero.this.global.type = DivisionByZero.this.global
 val runsAfter = List[String]("refchecks")
 val phaseName = DivisionByZero.this.name
@@ -259,7 +259,7 @@ We’re defining the apply method here which takes the CompilationUnit (the node
 
 Finally we call global.reporter.error(tree.pos, "attempting division by zero") which will halt the Scala compiler and display the error message.
 
-```go {linenos=table}
+```scala
 class DivByZeroPhase(prev: Phase) extends StdPhase(prev) {
   override def name = DivisionByZero.this.name
 
@@ -274,7 +274,7 @@ class DivByZeroPhase(prev: Phase) extends StdPhase(prev) {
 
 Now you’re ready to compile the compiler plugin for division by zero. Run this command to compile it, generate a jar file and publish the plugin to your local Ivy repository:
 
-```go
+```shell
 sbt compile package publishLocal
 ```
 
@@ -286,7 +286,7 @@ Now that we’ve got our plugin compiled and published to the local Ivy reposito
 
 The resolvers section tells the project to load the plugin from the Ivy repository on your local machine.
 
-```go
+```scala
 autoCompilerPlugins := true
 addCompilerPlugin("io.mattmoore.scala2.compiler.plugins" %% "division-by-zero" % "0.0.1-SNAPSHOT")
 resolvers += Resolver.mavenLocal
@@ -296,8 +296,8 @@ That’s it! now if you run sbt compile the Scala compiler should run the divisi
 
 Lets compile the project without the plugin. Note that it will compile successfully but fail when we run it.
 
-```go
-$ sbt compile
+```shell
+sbt compile
 [info] Loading global plugins from /Users/mattmoore/.sbt/1.0/plugins
 [info] Loading project definition from /Users/mattmoore/source/scala-compiler-plugin-example/use-plugins/division-by-zero/project
 [info] Loading settings for project root from build.sbt ...
@@ -309,8 +309,8 @@ $ sbt compile
 
 Let’s try running the program. You’ll notice it fails when running because division by zero (as most programmers and mathematicians know) is undefined.
 
-```go
-$ sbt run
+```shell
+sbt run
 [error] Caused by: java.lang.ArithmeticException: / by zero
 [error] 	at Test$.(Test.scala:3)
 [error] 	at Test.main(Test.scala)
@@ -322,7 +322,7 @@ $ sbt run
 
 Now let’s compile the project with the plugin enabled. Note that it fails during compilation with the error message we added in the plugin.
 
-```go
+```shell
 sbt compile
 [info] Loading global plugins from /Users/mattmoore/.sbt/1.0/plugins
 [info] Loading project definition from /Users/mattmoore/source/scala-compiler-plugin-example/use-plugins/division-by-zero/project

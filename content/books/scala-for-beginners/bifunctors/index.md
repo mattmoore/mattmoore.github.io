@@ -12,7 +12,7 @@ series_order: 7
 
 We've looked at `Either` already. It is an <abbr title="Algebraic Data Type">ADT</abbr> that can model success or failure cases. It models two possible outcomes. This ability for it to model two outcomes is what makes it a bifunctor.
 
-```go {linenos=table}
+```scala {linenos=table}
 //> using scala "3.2.2"
 //> using dep "org.typelevel::cats-core:2.9.0"
 
