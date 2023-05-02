@@ -22,7 +22,7 @@ In Scala, you can actually see what these phases are. If you have the Scala comp
 scalac -Xshow-phases
 ```
 
-{{<detail-tag "Click to show phases">}}
+{{<detail-tag "View compiler phases">}}
 ```
             phase name  description
             ----------  -----------
