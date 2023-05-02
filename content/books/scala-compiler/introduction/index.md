@@ -1,5 +1,6 @@
 ---
 title: "Introduction"
+summary: "Create the compiler plugin entrypoint."
 date: 2020-04-21T09:34:30-04:00
 draft: true
 authors:

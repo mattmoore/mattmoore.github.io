@@ -17,7 +17,7 @@ mainSections = ["blog"]
 
 disableImageOptimization = false
 
-defaultBackgroundImage = "images/sine-wave.png"
+defaultBackgroundImage = "images/cover_new.jpg"
 
 highlightCurrentMenuArea = true
 smartTOC = true

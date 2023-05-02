@@ -5,3 +5,5 @@ authors:
     - "mattmoore"
 draft: true
 ---
+
+![Shall We Play a Game?](shall-we-play-a-game.jpeg)
