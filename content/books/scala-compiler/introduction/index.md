@@ -10,6 +10,7 @@ series_order: 1
 tags:
     - "scala"
     - "scala-compiler"
+# Original URL: https://mattmoore.io/blog/writing-scala-compiler-plugins
 ---
 
 ## Compiler Phases
