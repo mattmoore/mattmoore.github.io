@@ -17,7 +17,7 @@ mainSections = ["blog"]
 
 disableImageOptimization = false
 
-defaultBackgroundImage = "images/desktop-1920x1080.jpg"
+defaultBackgroundImage = "images/IMG_1383.png"
 
 highlightCurrentMenuArea = true
 smartTOC = true
