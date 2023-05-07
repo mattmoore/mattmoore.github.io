@@ -11,7 +11,7 @@ Circe can be difficult to figure out - which imports to use, auto vs semiauto de
 
 ### Semiauto Derivation
 
-```scala{linenos=table}
+```scala
 //> using scala "3.2.2"
 //> using dep "io.circe::circe-core:0.14.5"
 //> using dep "io.circe::circe-generic:0.14.5"
@@ -57,7 +57,7 @@ def main() =
 
 ### Auto Derivation
 
-```scala{linenos=table}
+```scala
 //> using scala "3.2.2"
 //> using dep "io.circe::circe-core:0.14.5"
 //> using dep "io.circe::circe-generic:0.14.5"
@@ -98,7 +98,7 @@ def main() =
 
 ### Semiauto Derivation
 
-```scala {linenos=table}
+```scala
 //> using scala "3.2.2"
 
 //> using dep "io.circe::circe-core:0.14.5"
@@ -155,7 +155,7 @@ object Main extends IOApp {
 
 ### Auto Derivation
 
-```scala {linenos=table}
+```scala
 //> using scala "3.2.2"
 
 //> using dep "io.circe::circe-core:0.14.5"
