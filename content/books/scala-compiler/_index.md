@@ -4,7 +4,7 @@ draft: false
 menu:
     main:
         parent: "📚 Books"
-        weight: 20
+        weight: 30
 ---
 
 My learnings about the Scala 3 compiler (known as <mark>dotty</mark>).
