@@ -12,7 +12,7 @@ autoSwitchAppearance = false
 enableSearch = true
 enableCodeCopy = true
 
-mainSections = ["blog"]
+mainSections = ["posts"]
 # robots = ""
 
 disableImageOptimization = false
@@ -39,7 +39,7 @@ smartTOCHideUnfocusedChildren = true
   showRecent = true
   showRecentItems = 10
   showMoreLink = true
-  showMoreLinkDest = "blog"
+  showMoreLinkDest = "posts"
   cardView = true
   cardViewScreenWidth = false
   layoutBackgroundBlur = true # only used when layout equals background
