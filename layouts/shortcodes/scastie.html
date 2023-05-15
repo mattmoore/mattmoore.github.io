@@ -12,23 +12,45 @@
     .scastie .code .cm-s-solarized.cm-s-dark,
     .scastie .code .cm-s-solarized.cm-s-dark .editor-wrapper,
     .scastie .code .cm-s-solarized.cm-s-dark .cm-gutters {
-        background-color: #000000;
+        /* background-color: #000000; */
+        background-color: rgba(0, 0, 0, 0);
+    }
+
+    .scastie .editor-container .code {
+        width: 100%;
+        overflow: hidden;
+        background-color: rgba(0, 0, 0, 0.25);
     }
 
     .scastie .app.dark .editor-container .handler {
-        background: #000000;
+        /* background: #000000; */
+        background: rgba(0, 0, 0, 0);
+        height: 0;
     }
 
     .scastie .app.dark .editor-container .switcher-hide {
-        background: #000000;
+        /* background: #000000; */
+        background: rgba(0, 0, 0, 0);
+    }
+
+    .scastie .app.dark .editor-container .switcher-show {
+        color: #fdf6e3;
+        background: rgba(0, 0, 0, 0);
     }
 
     .scastie .app.dark .editor-container .console {
         color: #fdf6e3;
-        background: #000000;
+        /* background: #000000; */
+        background: rgba(0, 0, 0, 0);
     }
 
     .scastie .editor-container .console-container.console-open .output-console {
         height: 100%;
+        padding: 0;
+    }
+
+    .scastie .editor-container .console-container.console-open .output-console pre {
+        /* height: 100%; */
+        padding: 5px 10px;
     }
 </style>
