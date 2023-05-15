@@ -46,7 +46,7 @@ classDiagram
 
 If we are going to create a user, we would call the `UserService.create(User)`. Writing this in Scala might look like this:
 
-{{< scastie "KEswr7FPQCK6l6MVcVIVHw/1" >}}
+{{< scastie "KEswr7FPQCK6l6MVcVIVHw/2" >}}
 
 This looks great. It works, the service is calling a repository to do the saving, and we get the ID back from the database call, ensuring the user was saved.
 
