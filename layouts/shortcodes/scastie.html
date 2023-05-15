@@ -1,9 +1,30 @@
 <script src="https://scastie.scala-lang.org/mattmoore/{{ (.Get 0)}}.js?theme=dark"></script>
 <style type="text/css">
-.scastie {
-    font-size: 0.9em;
-}
-.scastie.embedded {
-    width: 100%;
-}
+    .scastie {
+        font-size: 0.9em;
+    }
+
+    .scastie.embedded {
+        width: 100%;
+    }
+
+    .scastie .dark .main-panel,
+    .scastie .code .cm-s-solarized.cm-s-dark,
+    .scastie .code .cm-s-solarized.cm-s-dark .editor-wrapper,
+    .scastie .code .cm-s-solarized.cm-s-dark .cm-gutters {
+        background-color: #000000;
+    }
+
+    .scastie .app.dark .editor-container .handler {
+        background: #000000;
+    }
+
+    .scastie .app.dark .editor-container .switcher-hide {
+        background: #000000;
+    }
+
+    .scastie .app.dark .editor-container .console {
+        color: #fdf6e3;
+        background: #000000;
+    }
 </style>
