@@ -119,13 +119,9 @@ classDiagram
 Instead of classes to implement our trait functionality, we can also define initialization functions for our traits:
 
 ```scala
-def userPostgresRepository = new UserRepository {
-    ...
-}
+def userPostgresRepository = new UserRepository {...}
 
-def userService(repo: UserRepository) = new UserService {
-    ...
-}
+def userService(repo: UserRepository) = new UserService {...}
 ```
 
 Putting all this together, we can write a program like this:
