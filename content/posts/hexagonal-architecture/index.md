@@ -12,7 +12,7 @@ Oftentimes, software ends up with the details of *how* to do CRUD operations mix
 
 With hexagonal architecture, we define the overall *what* our program is doing and separate the *how* our program does that. The *what* is defined in *ports* and the *how* is defined in *adapters*.
 
-## User Service and Repository
+## User Service and Repository without Hexagonal Architecture
 
 Let's start with an example. If we have a user service that can CRUD users, we might build a `UserRepository` and a `UserService` like this:
 
@@ -52,9 +52,19 @@ This looks great. It works, the service is calling a repository to do the saving
 
 But what if we first wrote this with PostgreSQL and later decided we wanted to support both PostgreSQL and DynamoDB? The current design doesn't allow us to do that. This is where hexagonal architecture comes in. Rather than defining a `UserService` and `UserRepository`, we can define these using ports and adapters.
 
-## Ports and Adapters
+## Using Hexagonal Architecture: Ports and Adapters
 
-The structure of our program changes to this:
+With hexagonal architecture, we would define ports, then implement the behavior in adapters. If we apply this principal to our user service, we would start in Scala with these traits:
+
+- `core.ports.UserRepository`
+- `core.ports.UserService`
+
+And then we would define adapters to describe our implementations. One way to do this is by creating Scala classes that extend the "port" traits above:
+
+- `core.adapters.UserRepository`
+- `core.adapters.UserService`
+
+This makes our original design now look something like this:
 
 {{< mermaid >}}
 classDiagram
@@ -106,4 +116,18 @@ classDiagram
     `core.ports.UserService` ..> `core.ports.UserRepository`
 {{< /mermaid >}}
 
-{{< scastie "8I3Yx0mAQymuGyV24lm4Og/25" >}}
+Instead of classes to implement our trait functionality, we can also define initialization functions for our traits:
+
+```scala
+def userPostgresRepository = new UserRepository {
+    ...
+}
+
+def userService(repo: UserRepository) = new UserService {
+    ...
+}
+```
+
+Putting all this together, we can write a program like this:
+
+{{< scastie "8I3Yx0mAQymuGyV24lm4Og/26" >}}
