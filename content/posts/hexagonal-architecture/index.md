@@ -12,7 +12,7 @@ Oftentimes, software ends up with the details of *how* to do CRUD operations mix
 
 With hexagonal architecture, we define the overall *what* our program is doing and separate the *how* our program does that. The *what* is defined in *ports* and the *how* is defined in *adapters*.
 
-## User Service and Repository without Hexagonal Architecture
+## An Example Without Hexagonal Architecture
 
 Let's start with an example. If we have a user service that can CRUD users, we might build a `UserRepository` and a `UserService` like this:
 
