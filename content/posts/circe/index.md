@@ -13,7 +13,7 @@ How to use Circe - which imports to use, auto vs semiauto derivation, etc...
 
 Auto derivation is typically used. Circe will using shapeless for derivation of types to determine how to encode and decode.
 
-{{< scastie "1Je4s4yfRNq8KB4MG3qs4A/3" >}}
+{{< scastie "1Je4s4yfRNq8KB4MG3qs4A/9" >}}
 
 ### Semiauto Derivation
 
