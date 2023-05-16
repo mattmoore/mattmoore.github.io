@@ -11,88 +11,11 @@ Circe can be difficult to figure out - which imports to use, auto vs semiauto de
 
 ### Semiauto Derivation
 
-```scala
-//> using scala "3.2.2"
-//> using dep "io.circe::circe-core:0.14.5"
-//> using dep "io.circe::circe-generic:0.14.5"
-//> using dep "io.circe::circe-parser:0.14.5"
-
-import io.circe.*
-import io.circe.syntax.*
-import io.circe.generic.semiauto.*
-
-case class User(id: Int, firstName: String, lastName: String)
-
-// Just the encoder
-given Encoder[User] = deriveEncoder
-// Just the decoder
-given Decoder[User] = deriveDecoder
-// Codec derives both encoder and decoder
-// given Codec[User] = deriveCodec
-
-@main
-def main() =
-  // Successful conversion to JSON
-  println {
-    User(1, "Matt", "Moore").asJson
-  }
-
-  // Successful JSON parse
-  println {
-    val json =
-      """{
-            "id": 1,
-            "firstName": "Matt",
-            "lastName": "Moore"
-          }"""
-    parser.decode[User](json)
-  }
-
-  // Invalid JSON for the User type
-  println {
-    val json = """{"greeting": "Hello, Matt"}"""
-    parser.decode[User](json)
-  }
-```
+{{< scastie "C4UCrm2ISJq5mACO24G6jA/3" >}}
 
 ### Auto Derivation
 
-```scala
-//> using scala "3.2.2"
-//> using dep "io.circe::circe-core:0.14.5"
-//> using dep "io.circe::circe-generic:0.14.5"
-//> using dep "io.circe::circe-parser:0.14.5"
-
-import io.circe.*
-import io.circe.syntax.*
-import io.circe.generic.auto.*
-
-case class User(id: Int, firstName: String, lastName: String)
-
-@main
-def main() =
-  // Successful conversion to JSON
-  println {
-    User(1, "Matt", "Moore").asJson
-  }
-
-  // Successful JSON parse
-  println {
-    val json =
-      """{
-            "id": 1,
-            "firstName": "Matt",
-            "lastName": "Moore"
-          }"""
-    parser.decode[User](json)
-  }
-
-  // Invalid JSON for the User type
-  println {
-    val json = """{"greeting": "Hello, Matt"}"""
-    parser.decode[User](json)
-  }
-```
+{{< scastie "1Je4s4yfRNq8KB4MG3qs4A/1" >}}
 
 ## With http4s / cats-effect
 
