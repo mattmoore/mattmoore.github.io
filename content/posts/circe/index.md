@@ -1,11 +1,11 @@
 ---
 title: "Circe"
-summary: "Circe can be difficult to figure out - which imports to use, auto vs semiauto derivation, etc..."
+summary: "How to use Circe - which imports to use, auto vs semiauto derivation, etc..."
 date: 2023-05-03T00:27:57-04:00
 draft: false
 ---
 
-Circe can be difficult to figure out - which imports to use, auto vs semiauto derivation, etc...
+How to use Circe - which imports to use, auto vs semiauto derivation, etc...
 
 ## Circe Standalone
 
