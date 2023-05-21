@@ -17,7 +17,7 @@ mainSections = ["posts"]
 
 disableImageOptimization = false
 
-defaultBackgroundImage = "images/sine-wave.png"
+defaultBackgroundImage = "images/peakpx2_compressed.jpg"
 
 highlightCurrentMenuArea = true
 smartTOC = true

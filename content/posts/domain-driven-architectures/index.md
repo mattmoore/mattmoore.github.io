@@ -1,5 +1,6 @@
 ---
 title: "Domain-Driven Architectures"
+summary: "Domain driven architectures are design patterns that focus on separating *what* a program does from *how* it does it."
 date: 2023-05-15T03:01:45-04:00
 draft: true
 ---
