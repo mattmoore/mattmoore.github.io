@@ -3,6 +3,7 @@ title: "Macros"
 summary: "With a macro, we can treat programs as values, which allows us to analyze and generate them at compile time."
 date: 2023-05-25T19:08:12-04:00
 draft: true
+layout: 'simple'
 ---
 
 ```scala
