@@ -3,12 +3,17 @@ title: "Macros"
 summary: "With a macro, we can treat programs as values, which allows us to analyze and generate them at compile time."
 date: 2023-05-25T19:08:12-04:00
 draft: false
-layout: 'simple'
 ---
+
+## What are macros?
 
 With a macro, we can treat programs as values, which allows us to analyze and generate them at compile time.
 
+## A simple macro to print execution time
+
 Let's start with a simple example. We'll create a function that times a given operation and prints the time it took to run the function.
+
+### Macro Definition - `Macro.scala`
 
 When creating macros, you need to make sure they exist in a separate file. We'll create a `Macro.scala` file and add this code to it:
 
@@ -37,6 +42,8 @@ object Macro:
     }
 ```
 
+### Macro Usage - `App.scala`
+
 ```scala
 //> using scala "3.2.2"
 
@@ -58,6 +65,24 @@ def main =
   timed(f(1))
   timed(f(2))
 ```
+
+Run `scala-cli .`:
+
+```shell
+Start2
+End
+Evaluating {
+  scala.Predef.println("Start2")
+  java.lang.Thread.sleep(1000L)
+  scala.Predef.println("End")
+} took: 1076ms
+Evaluating App$package.f(1) took: 503ms
+Evaluating App$package.f(2) took: 1002ms
+```
+
+## Customizing the macro output
+
+### Macro Definition - `Macro.scala`
 
 ```scala
 import scala.quoted.*
@@ -85,6 +110,8 @@ object Macro:
     }
 ```
 
+### Macro Usage - `App.scala`
+
 ```scala
 //> using scala "3.2.2"
 
@@ -105,4 +132,14 @@ def main =
 
   timed(f(1))
   timed(f(2))
+```
+
+Run `scala-cli .`:
+
+```shell
+Start2
+End
+Evaluating { scala.Predef.println("Start2") java.lang.Thread.... took: 1069ms
+Evaluating f(1) took: 504ms
+Evaluating f(2) took: 1004ms
 ```

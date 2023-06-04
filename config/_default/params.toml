@@ -17,7 +17,7 @@ mainSections = ["posts"]
 
 disableImageOptimization = false
 
-defaultBackgroundImage = "images/cover_new.jpg"
+defaultBackgroundImage = "images/peakpx2_compressed.jpg"
 
 highlightCurrentMenuArea = true
 smartTOC = true
