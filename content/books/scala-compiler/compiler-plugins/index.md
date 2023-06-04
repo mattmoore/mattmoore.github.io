@@ -1,12 +1,12 @@
 ---
-title: "Introduction"
-summary: "Create the compiler plugin entrypoint."
+title: "Compiler Plugins"
+summary: "Extending the Scala compiler via plugins."
 date: 2020-04-21T09:34:30-04:00
-draft: true
+draft: false
 authors:
     - "mattmoore"
 series: ["Scala Compiler"]
-series_order: 1
+series_order: 2
 tags:
     - "scala"
     - "scala-compiler"
