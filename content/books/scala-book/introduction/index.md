@@ -5,7 +5,7 @@ date: 2023-04-29T19:13:57-04:00
 draft: true
 authors:
     - "mattmoore"
-series: ["Scala for Beginners"]
+series: ["Scala Book"]
 series_order: 1
 ---
 
