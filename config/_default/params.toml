@@ -17,7 +17,7 @@ mainSections = ["posts"]
 
 disableImageOptimization = false
 
-defaultBackgroundImage = "images/pink-blue-gradient_7680x4320.jpg"
+defaultBackgroundImage = "images/deepin 1.jpg"
 
 highlightCurrentMenuArea = true
 smartTOC = true
