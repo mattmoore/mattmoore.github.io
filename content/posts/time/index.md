@@ -112,14 +112,14 @@ Lots of Unix operating systems include a CLI utility called `date`. On macOS you
 
 #### Epoch Time
 
-```
+```shell
 date '+%s'
 1684522981
 ```
 
 #### ISO-8601 Standard
 
-```
+```shell
 date -u +%FT%TZ
 2023-05-19T19:03:14Z
 ```
@@ -130,7 +130,7 @@ The `date` command appends a newline to the output, which can be frustrating whe
 
 Notice the output `|:26Z.|` - this shows the newline as a `.` on the end:
 
-```
+```shell
 date -u +%FT%TZ | hexdump -C
 00000000  32 30 32 33 2d 30 35 2d  31 39 54 31 39 3a 30 33  |2023-05-19T19:03|
 00000010  3a 32 36 5a 0a                                    |:26Z.|
@@ -139,7 +139,7 @@ date -u +%FT%TZ | hexdump -C
 
 Now we apply `tr -d \\n` to remove the newline:
 
-```
+```shell
 date -u +%FT%TZ | tr -d \\n | hexdump -C
 00000000  32 30 32 33 2d 30 35 2d  31 39 54 31 39 3a 30 33  |2023-05-19T19:03|
 00000010  3a 33 38 5a                                       |:38Z|
@@ -148,7 +148,7 @@ date -u +%FT%TZ | tr -d \\n | hexdump -C
 
 We can verify the removal of newline carries through to the clipboard by piping in `pbcopy && pbpaste` (on macOS):
 
-```
+```shell
 date -u +%FT%TZ | tr -d \\n | pbcopy && pbpaste | hexdump -C
 00000000  32 30 32 33 2d 30 35 2d  31 39 54 31 39 3a 30 33  |2023-05-19T19:03|
 00000010  3a 35 30 5a                                       |:50Z|
@@ -157,7 +157,7 @@ date -u +%FT%TZ | tr -d \\n | pbcopy && pbpaste | hexdump -C
 
 Finally, we can see that to concisely generate an ISO-8601 timestamp of the current time, while also removing the newline and copying to your clipboard, you would use:
 
-```
+```shell
 date -u +%FT%TZ | tr -d \\n | pbcopy
 ```
 
