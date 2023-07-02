@@ -11,17 +11,17 @@
 # ordered by weight from lowest to highest.
 
 [[main]]
-  name = "🗒️ Posts"
+  name = "Posts"
   pageRef = "posts"
   weight = 10
 
 [[main]]
-  name = "📚 Books"
+  name = "Books"
   pageRef = "books"
   weight = 20
 
 [[main]]
-  name = "🧑‍🏫 Talks"
+  name = "Talks"
   pageRef = "talks"
   weight = 30
 

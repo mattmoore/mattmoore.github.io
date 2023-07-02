@@ -1,9 +1,9 @@
 ---
-title: "📕 Scala Book"
+title: "Scala Book"
 draft: false
 menu:
     main:
-        parent: "📚 Books"
+        parent: "Books"
         weight: 20
 ---
 

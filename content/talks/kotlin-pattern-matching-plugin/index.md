@@ -1,11 +1,11 @@
 ---
-title: "🧑‍🏫 Kotlin Pattern Matching Plugin"
+title: "Kotlin Pattern Matching Plugin"
 summary: "This talk aims to explore the possibility of adding pattern matching to Kotlin. It will go through why and how it could be done, from adding it to the actual language to using a compiler plugin (much like kotlinx.serialization works)."
 date: 2020-07-01
 draft: false
 menu:
     main:
-        parent: "🧑‍🏫 Talks"
+        parent: "Talks"
         weight: 40
 ---
 
