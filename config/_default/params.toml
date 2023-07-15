@@ -17,7 +17,7 @@ mainSections = ["posts"]
 
 disableImageOptimization = false
 
-defaultBackgroundImage = "images/deepin 1.jpg"
+defaultBackgroundImage = "images/peakpx2_compressed.jpg"
 
 highlightCurrentMenuArea = true
 smartTOC = true
