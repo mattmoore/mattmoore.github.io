@@ -3,7 +3,7 @@ title: "It's time to reboot my website"
 date: 2023-04-28T20:26:25-04:00
 authors:
     - "mattmoore"
-draft: false
+draft: true
 ---
 
 I had a website around for a long while now, but I ended up neglecting it and never really had the time to write about the topics I wanted to write on - in spite of having many topics to write about. As 2023 progresses, I've managed to clear away some of the various things in life that were eating up my personal time to write more.
