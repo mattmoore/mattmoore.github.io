@@ -1,6 +1,6 @@
 ---
 title: "Scala Book"
-draft: false
+draft: true
 menu:
     main:
         parent: "Books"
