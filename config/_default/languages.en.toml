@@ -1,22 +1,22 @@
 languageCode = "en"
 languageName = "English"
-displayName = "EN"
-isoCode = "en"
 weight = 1
-rtl = false
-
 title = "Matt Moore"
-logo = "images/lambda.logo.png"
-# description = "A powerful, lightweight theme for Hugo built with Tailwind CSS."
-# copyright = "Copy, _right?_ :thinking_face:"
 
-dateFormat = "2 January 2006"
+[params]
+  displayName = "EN"
+  isoCode = "en"
+  rtl = false
+  dateFormat = "2 January 2006"
+  logo = "images/lambda.logo.png"
+  # description = "A powerful, lightweight theme for Hugo built with Tailwind CSS."
+  # copyright = "Copy, _right?_ :thinking_face:"
 
 [author]
   name = "Matt Moore"
   image = "images/me.png"
-#  headline = "A powerful, lightweight theme for Hugo built with Tailwind CSS."
-#  bio = "A powerful, lightweight theme for Hugo built with Tailwind CSS."
+  # headline = "A powerful, lightweight theme for Hugo built with Tailwind CSS."
+  # bio = "A powerful, lightweight theme for Hugo built with Tailwind CSS."
   links = [
     { github = "https://github.com/mattmoore" },
     { twitter = "https://twitter.com/mattmoore_io" },
