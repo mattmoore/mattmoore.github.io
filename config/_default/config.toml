@@ -19,6 +19,8 @@ buildFuture = false
 
 [imaging]
   anchor = 'Center'
+  resampleFilter = "lanczos"
+  quality = 100
 
 [taxonomies]
   tag = "tags"

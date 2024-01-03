@@ -15,7 +15,8 @@ enableCodeCopy = true
 mainSections = ["posts"]
 # robots = ""
 
-disableImageOptimization = false
+disableImageOptimization = true
+disableImageZoom = false
 
 defaultBackgroundImage = "images/peakpx2_compressed.jpg"
 
