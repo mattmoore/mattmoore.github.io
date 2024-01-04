@@ -38,28 +38,24 @@ sudo systemctl enable xrdp xrdp-sesman
 ```
 
 {{< alert >}}
-**Note:** Some folks say to do add the entries below to `/etc/X11/Xwrapper.config`.
+**Note:** Some folks say to add these entries `/etc/X11/Xwrapper.config`:
 
-`/etc/X11/Xwrapper.config`:
-
-```shell
+```text
 allowed_users=anybody
 needs_root_rights=no
 ```
 
-You can do this, but it's not recommended (even though the Arch Wiki lists it). Instead, you should do this:
+You can do this, but it's not recommended (even though the Arch Wiki lists it). Instead, you should change `param` in `/etc/xrdp/sesman.ini`:
 
-`/etc/xrdp/sesman.ini`:
-
-```shell
+```text
 param=/usr/lib/Xorg
 ```
 
 {{< /alert >}}
 
-`~/.xinitrc`:
+Add this to `~/.xinitrc`:
 
-```shell
+```text
 /usr/lib/plasma-dbus-run-session-if-needed startplasma-x11
 ```
 
@@ -67,9 +63,11 @@ After editing `~/.xinitrc`, `chmod +x ~/.xinitrc`.
 
 If you encounter authorization errors upon connecting remotely, add the following Policy Kit rule:
 
-`/etc/polkit-1/rules.d/45-colord.rules`:
-
 ```shell
+/etc/polkit-1/rules.d/45-colord.rules
+```
+
+```text
 polkit.addRule(function(action, subject) {
     if ((action.id == "org.freedesktop.color-manager.create-device" ||
          action.id == "org.freedesktop.color-manager.create-profile") &&
