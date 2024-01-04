@@ -5,6 +5,12 @@ date: 2024-01-03T15:31:27-05:00
 draft: false
 ---
 
+xrdp is for connecting remotely to a Linux desktop environment via remote desktop protocol.
+
+{{< alert >}}
+**Note:** You cannot connect via xrdp while also logged in physically to the machine.
+{{< /alert >}}
+
 Install `xrdp` and `xorgxrdp` from AUR:
 
 ```shell
@@ -31,6 +37,9 @@ Enable `xrdp` and `xrdp-sesman`:
 sudo systemctl enable xrdp xrdp-sesman
 ```
 
+{{< alert >}}
+**Note:** Some folks say to do add the entries below to `/etc/X11/Xwrapper.config`.
+
 `/etc/X11/Xwrapper.config`:
 
 ```shell
@@ -38,11 +47,15 @@ allowed_users=anybody
 needs_root_rights=no
 ```
 
+You can do this, but it's not recommended (even though the Arch Wiki lists it). Instead, you should do this:
+
 `/etc/xrdp/sesman.ini`:
 
 ```shell
 param=/usr/lib/Xorg
 ```
+
+{{< /alert >}}
 
 `~/.xinitrc`:
 
@@ -50,7 +63,9 @@ param=/usr/lib/Xorg
 /usr/lib/plasma-dbus-run-session-if-needed startplasma-x11
 ```
 
-If you encounter authorization errors upon connecting remotely:
+After editing `~/.xinitrc`, `chmod +x ~/.xinitrc`.
+
+If you encounter authorization errors upon connecting remotely, add the following Policy Kit rule:
 
 `/etc/polkit-1/rules.d/45-colord.rules`:
 

@@ -413,6 +413,16 @@ Now we want to update Arch Linux to the latest:
 pacman -Syu
 ```
 
+### Install Parallels Tools
+
+From the Parallels Actions menu, select `Install Parallels Tools`. Then:
+
+```shell
+sudo pacman -S linux-headers dkms
+sudo mount --mkdir /dev/cdrom /mnt/cdrom
+sudo /mnt/cdrom/install
+```
+
 ## Final Notes
 
 Hopefully all went well and you've got a functioning minimum Arch Linux installation. If any part of this guide didn't work for you, please reach out as I'd like to know so I can update this article.
