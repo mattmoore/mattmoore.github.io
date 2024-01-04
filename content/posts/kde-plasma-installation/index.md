@@ -22,3 +22,9 @@ Enable the default plasma display manager `sddm`:
 ```shell
 sudo systemctl enable sddm
 ```
+
+Then either start `sddm` (or `reboot`):
+
+```shell
+sudo systemctl start sddm
+```
