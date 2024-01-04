@@ -49,3 +49,24 @@ param=/usr/lib/Xorg
 ```shell
 /usr/lib/plasma-dbus-run-session-if-needed startplasma-x11
 ```
+
+If you encounter authorization errors upon connecting remotely:
+
+`/etc/polkit-1/rules.d/45-colord.rules`:
+
+```shell
+polkit.addRule(function(action, subject) {
+    if ((action.id == "org.freedesktop.color-manager.create-device" ||
+         action.id == "org.freedesktop.color-manager.create-profile") &&
+        subject.isInGroup("wheel"))
+    {
+        return polkit.Result.YES;
+    }
+});
+```
+
+Then, reboot the system:
+
+```shell
+sudo reboot
+```
