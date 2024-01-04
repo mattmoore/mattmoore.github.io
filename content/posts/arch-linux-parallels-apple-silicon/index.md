@@ -105,9 +105,9 @@ To partition the disks, I prefer using `cfdisk`. Type `cfdisk`, then select `gpt
 
 ![fdisk -l](images/partition-fdisk-l.png)
 
-![cfdisk](images/cfdisk-free-space.png)
-
 ![cfdisk gpt](images/cfdisk-gpt.png)
+
+![cfdisk](images/cfdisk-free-space.png)
 
 ![cfdisk partitions](images/cfdisk-partitions.png)
 
