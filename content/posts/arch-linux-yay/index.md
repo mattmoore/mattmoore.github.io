@@ -22,6 +22,6 @@ yay --version
 Clean up:
 
 ```shell
-cd ~/
+cd ..
 rm -rf yay
 ```
