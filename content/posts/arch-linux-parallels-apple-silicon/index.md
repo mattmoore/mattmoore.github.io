@@ -65,7 +65,7 @@ Alright, let's get started!
 
 ![Welcome to Archboot](images/welcome-to-archboot.png)
 
-### Configure language, network, package mirror
+<!-- ### Configure language, network, package mirror
 
 ![Select language](images/select-language.png)
 
@@ -79,25 +79,29 @@ Alright, let's get started!
 
 ![Network summary](images/network-summary.png)
 
-![Package mirror](images/package-mirror.png)
+![Package mirror](images/package-mirror.png) -->
 
 {{< alert icon="fire" cardColor="#e63946" iconColor="#1d3557" textColor="#f1faee" >}}
 **Warning:** Do not continue to use the Archboot Basic Setup! If you try to use it to partition disks and install Arch Linux ARM, it will fail and your VM will be in a broken state.
 
 Instead, we're going to exit the Archboot Basic Setup and proceed to (mostly) follow the directions from the official [Arch Linux Installation Guide](https://wiki.archlinux.org/title/Installation_guide).
+
+To get out of the Archboot Basic Setup, just enter `Ctrl + C`, which should dump you directly to the terminal.
 {{< /alert >}}
 
-### Exit launcher (do not install Arch Linux ARM using Archboot helper script)
+<!-- ### Exit launcher (do not install Arch Linux ARM using Archboot helper script)
 
 ![Exit launcher menu](images/exit-launcher-menu.png)
 
 ![Exit launcher menu confirmation](images/exit-launcher-menu-confirm.png)
 
-![ISO terminal](images/iso-terminal.png)
+![ISO terminal](images/iso-terminal.png) -->
 
 ### Partition the disks
 
-To partition the disks, I prefer using `cfdisk`.
+You can view all your disks and existing partitions with `fdisk -l`. Since we just created this VM and disk, there are no partitions. You should just see `/dev/sda` and any other virtual disks you might have created.
+
+To partition the disks, I prefer using `cfdisk`. Type `cfdisk`, then select `gpt` from the list.
 
 ![fdisk -l](images/partition-fdisk-l.png)
 
@@ -107,13 +111,26 @@ To partition the disks, I prefer using `cfdisk`.
 
 ![cfdisk partitions](images/cfdisk-partitions.png)
 
+Make sure your partition types are set correctly. At minimum, you should have:
+
+- `BIOS Boot`
+- `EFI System`
+- `Linux swap`
+- `Linux root (ARM-64)`
+
 {{< alert >}}
 **Note:** Normally on bare metal I would create a separate partition for `/` and `/home`. For VMs, I typically share a partition for `/` and `/home`. You are free to add as many partitions as you'd like. This is one big reason why I recommend not using the pre-built VM linked to from the Arch Wiki. I'm glad it exists, and you might be fine with it, but I like to have the freedom to set the partition sizes to my needs.
+
+If you have a `/home` partition separate from `/`, make sure to set the partition type for `/` to `Linux root (ARM-64)` and the partition for `/home` to `Linux home`.
 {{< /alert >}}
+
+Finally, ensure you select `Write` within `cfdisk` and confirm with `yes`, then Enter. Once the partition table is written, you can select `Quit` to exit `cfdisk`.
 
 ![fdisk -l partitions](images/fdisk-l-partitions.png)
 
-### Format the disks
+### Format the partitions
+
+In case you need to view the partition identifiers, remember to use `fdisk -l`.
 
 #### EFI partition
 
@@ -174,7 +191,13 @@ sda      8:0    0   128G  0 disk
 ├─sda2   8:2    0   512M  0 part /mnt/boot
 ├─sda3   8:3    0     8G  0 part [SWAP]
 └─sda4   8:4    0 119.5G  0 part /mnt
+sr0      11:0   1 342.3M  0 rom
+zram0   251:0   0     5G  0 disk /
 ```
+
+{{< alert >}}
+**Note:** You can ignore `sr0` and `zram0` here. We mainly care about `sda`.
+{{< /alert >}}
 
 ### Disable package signing
 
@@ -190,14 +213,14 @@ To disable package signing, edit the file `/etc/pacman.conf` and comment out the
 `pacstrap` is the tool used to install the packages you want for your new setup.
 
 ```shell
-pacstrap /mnt base base-devel dhcpcd vim terminus-font
+pacstrap /mnt base base-devel linux grub efibootmgr bash-completion dhcpcd vim terminus-font git
 ```
 
 {{< alert icon="fire" cardColor="#e63946" iconColor="#1d3557" textColor="#f1faee" >}}
-**Warning:** For Archboot ARM, do not install the `linux` package via `pacstrap` as the Arch Wiki Installation Guide shows. You may get an error if you do. We'll install it after we run `pacstrap`.
-{{< /alert >}}
+**Warning:** For Archboot ARM, you may see errors when installing the `linux` package via `pacstrap` as it tries to execute `mkinitcpio`. This is broken in Archboot. We'll fix it later.
 
-Here we're installing package to our mounted root partition `/mnt`. We're installing `base`, `base-devel`, `dhcpcd`, `vim` and `terminus-font`. `terminus-font` is needed because it doesn't get auto-installed correctly via Arch Linux ARM's `base` package, and will cause errors when the linux image is being generated. `dhcpcd` will allow us later to connect to the network with DHCP.
+Here we're installing package to our mounted root partition `/mnt`. We're installing a few basic packages, but of note is `terminus-font` because it doesn't get auto-installed correctly via Arch Linux ARM's `base` package, and will cause errors when the linux image is being generated. `dhcpcd` will allow us later to connect to the network with DHCP.
+{{< /alert >}}
 
 This will take some time to install, depending on your internet connection. Once complete, we can move on to the next step, where we're configure the system.
 
@@ -245,32 +268,32 @@ Finally, set your hostname in `/etc/hostname`.
 
 ### Disable package signing on the installed OS
 
-Earlier I mentioned when running `pacstrap` not to install the `linux` package, as it will break. We're going to install it soon, but first we need to disable package signing for the installed OS.
-
 I also mentioned earlier that package signing is broken in the current release of Archboot ARM, and we had already disabled it for the live ISO. But after `arch-chroot` we have to disable it again for the installed (not the live ISO) system.
 
 To disable package signing, we do the same thing as before. Edit the file `/etc/pacman.conf` and comment out the line with `SigLevel = Required DatabaseOptional` (comment so you can easily reenable it later) and add a new line with `SigLevel = Never`:
 ![Alt text](images/disable-package-signing.png)
 
-### Install the Linux kernel
+### Initramfs (Installing the Linux kernel)
 
-We're finally ready to install the Linux kernel:
+Earlier I mentioned when running `pacstrap` with the `linux` package might show errors. Just to make sure the Initramfs is configured, we'll manually run:
 
 ```shell
-pacman -S linux
+mkinitcpio -P
 ```
 
 {{< alert >}}
-**Note:** You may see warnings while the `linux` package is installing. You can ignore these. As long as you don't see errors, you should be OK.
-
-Also, if you aren't sure whether the `linux` package completed successfully, or if you had already installed the `linux` package earlier via `pacstrap` and it errored out, you can always re-run the initramfs generation with `mkinitcpio -P`.
+**Note:** You may still see warnings when `mkinitcpio -P` runs. You should be able to ignore these at this point.
 {{< /alert >}}
 
 ### Set the root password
 
+Enter this command to set the password for the `root` user:
+
 ```
 passwd
 ```
+
+Then follow the prompts to enter your password twice.
 
 ### Boot loader (Grub)
 
@@ -278,13 +301,13 @@ I prefer Grub as I'm familiar with it, it's super popular, easy to set up, and I
 
 That being said, you can try to use whatever boot loader you want. See the Arch Linux Wiki info on [boot loaders](https://wiki.archlinux.org/title/Boot_loader).
 
-Install `grub` and `efibootmgr`:
+Earlier when we ran `pacstrap` we already installed the `grub` and `efibootmgr` packages. If you hadn't, you can install them with:
 
 ```shell
 pacman -S grub efibootmgr
 ```
 
-Install the bootloader with grub:
+Next, install the bootloader with `grub-install`:
 
 ```shell
 grub-install --target=arm64-efi --efi-directory=/boot --bootloader-id=GRUB
@@ -308,6 +331,36 @@ Adding boot menu entry for UEFI Firmware Settings ...
 done
 ```
 
+### Create your user account
+
+```shell
+useradd -m -G wheel username
+passwd username
+```
+
+Enter your password twice.
+
+Now, you probably want to grant your new user the ability to execute commands with `sudo`. To do so, let's edit the `/etc/sudoers` file:
+
+```shell
+EDITOR=vim visudo # or nano if you prefer
+```
+
+Find this section:
+
+```shell
+## Uncomment to allow members of group wheel to execute any command
+# %wheel ALL=(ALL:ALL) ALL
+```
+
+and uncomment this line:
+
+```shell
+%wheel ALL=(ALL:ALL) ALL
+```
+
+Then save the file and close it.
+
 ### Reboot
 
 Your system is now installed! Exit the `arch-chroot` environment with `exit` command or `Ctrl + D`. Then you can simply type `reboot` and the VM should reboot.
@@ -322,19 +375,31 @@ You can let the timer run to auto-select `Arch Linux` or press enter to start it
 
 ![Arch login screen](images/arch-login-screen.png)
 
-The username is `root` and the password is the one you set earlier when you ran the `passwd` command.
+Use the username and password you set when creating your account. You can also log in as `root` user, but that's not recommended.
 
 ### Connect the VM to the host network (get on the internet)
 
 You can use all sorts of tools for network configuration. The current default for Arch Linux is [systemd-networkd](https://wiki.archlinux.org/title/Systemd-networkd). You can follow that Arch Wiki article to get set up.
 
-Once you've configured `systemd-networkd`, you'll want to next enable it so the VM will get connected to the network automatically upon boot:
+As a quick example, you can enable DHCP. First, get the name of your network interface with `ip link` command, which should return you something like `enp0s5` (in my case). Then you can configure DHCP for the network interface like this:
+
+`/etc/systemd/network/20-wired.network`:
 
 ```shell
-systemctl enable systemd-networkd
+[Match]
+Name=enp0s5
+
+[Network]
+DHCP=yes
 ```
 
-Finally, reboot with the `reboot` command. After reboot, once you log in, you should be online. You can test with a ping:
+Once you've configured `systemd-networkd`, you'll want to next enable it as well as `dhcpcd` so the VM will get connected to the network automatically upon boot:
+
+```shell
+sudo systemctl enable systemd-networkd dhcpcd
+```
+
+Finally, reboot with `sudo reboot`. After reboot, once you log in, you should be online. You can test with a ping:
 
 ```shell
 ping archlinux.org
@@ -353,3 +418,7 @@ pacman -Syu
 Hopefully all went well and you've got a functioning minimum Arch Linux installation. If any part of this guide didn't work for you, please reach out as I'd like to know so I can update this article.
 
 If you want a desktop environment, the Arch Linux Wiki [has you covered](https://wiki.archlinux.org/title/Desktop_environment).
+
+I have been using KDE Plasma of late. For a quick setup guide, [see my post here](/posts/kde-plasma-installation).
+
+If you want an easy method for installing unofficial packages from the Arch User Repository (AUR), [see my post here](/posts/arch-linux-yay).
