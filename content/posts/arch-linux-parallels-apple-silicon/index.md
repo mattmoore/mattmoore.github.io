@@ -65,22 +65,6 @@ Alright, let's get started!
 
 ![Welcome to Archboot](images/welcome-to-archboot.png)
 
-<!-- ### Configure language, network, package mirror
-
-![Select language](images/select-language.png)
-
-![Network interface](images/network-interface.png)
-
-![Network profile name](images/network-profile-name.png)
-
-![Network DHCP](images/network-dhcp.png)
-
-![Network proxy](images/network-proxy.png)
-
-![Network summary](images/network-summary.png)
-
-![Package mirror](images/package-mirror.png) -->
-
 {{< alert icon="fire" cardColor="#e63946" iconColor="#1d3557" textColor="#f1faee" >}}
 **Warning:** Do not continue to use the Archboot Basic Setup! If you try to use it to partition disks and install Arch Linux ARM, it will fail and your VM will be in a broken state.
 
@@ -89,34 +73,41 @@ Instead, we're going to exit the Archboot Basic Setup and proceed to (mostly) fo
 To get out of the Archboot Basic Setup, just enter `Ctrl + C`, which should dump you directly to the terminal.
 {{< /alert >}}
 
-<!-- ### Exit launcher (do not install Arch Linux ARM using Archboot helper script)
-
-![Exit launcher menu](images/exit-launcher-menu.png)
-
-![Exit launcher menu confirmation](images/exit-launcher-menu-confirm.png)
-
-![ISO terminal](images/iso-terminal.png) -->
-
 ### Partition the disks
 
-You can view all your disks and existing partitions with `fdisk -l`. Since we just created this VM and disk, there are no partitions. You should just see `/dev/sda` and any other virtual disks you might have created.
+You can view all your disks and existing partitions with:
 
-To partition the disks, I prefer using `cfdisk`. Type `cfdisk`, then select `gpt` from the list.
+```shell
+fdisk -l
+```
 
-![fdisk -l](images/partition-fdisk-l.png)
+```text
+Disk /dev/sda: 128GB, 137438953472 bytes, 268435456 sectors
+Disk model: Arch Test-0 SSD
+Units: sectors 1 of * 512 bytes / 4096 bytes
+I/O size (minimum/optimal): 4096 bytes / 4096 bytes
+```
+
+Since we just created this VM and disk, there are no partitions. You should just see `/dev/sda` and any other virtual disks you might have created.
+
+To partition the disks, I prefer using `cfdisk`. Type `cfdisk`, then select `gpt` from the list and press `Enter`:
 
 ![cfdisk gpt](images/cfdisk-gpt.png)
 
+Now you should see your `/dev/sda` device in `cfdisk`, showing free space:
+
 ![cfdisk](images/cfdisk-free-space.png)
+
+You can create partitions now. The up/down arrow keys allow you to move up and down the partition list, and right/left allow you to select the commands at the bottom of the screen. Enter executes the selected command.
 
 ![cfdisk partitions](images/cfdisk-partitions.png)
 
 Make sure your partition types are set correctly. At minimum, you should have:
 
-- `BIOS Boot`
-- `EFI System`
-- `Linux swap`
-- `Linux root (ARM-64)`
+- `BIOS Boot` - Set this to `2m`
+- `EFI System` - Set this to at least 300m. I typically allocate 512m.
+- `Linux swap` - I have this set to `8g`. What number you select depends on your use-cases. [Here's a decent article explaining swap sizes](https://opensource.com/article/19/2/swap-space-poll).
+- `Linux root (ARM-64)` - Remaining space of the drive.
 
 {{< alert >}}
 **Note:** Normally on bare metal I would create a separate partition for `/` and `/home`. For VMs, I typically share a partition for `/` and `/home`. You are free to add as many partitions as you'd like. This is one big reason why I recommend not using the pre-built VM linked to from the Arch Wiki. I'm glad it exists, and you might be fine with it, but I like to have the freedom to set the partition sizes to my needs.
@@ -126,7 +117,19 @@ If you have a `/home` partition separate from `/`, make sure to set the partitio
 
 Finally, ensure you select `Write` within `cfdisk` and confirm with `yes`, then Enter. Once the partition table is written, you can select `Quit` to exit `cfdisk`.
 
-![fdisk -l partitions](images/fdisk-l-partitions.png)
+You can confirm the partitions were created with:
+
+```shell
+fdisk -l
+```
+
+```text
+Device        Start       End   Sectors   Size Type
+/dev/sda1      2048      6143      4096     2M BIOS boot
+/dev/sda2      6142   1054719   1048576   512M EFI System
+/dev/sda3   1054720  17831935  16777216     8G Linux swap
+/dev/sda4  17831936 268433407 250601472 119.5G Linux root (ARM-64)
+```
 
 ### Format the partitions
 
@@ -179,12 +182,13 @@ Activate the swap partition
 swapon /dev/sda3
 ```
 
-If all went well, you can check that everything is properly mounted with `lsblk`:
+If all went well, you can check that everything is properly mounted with:
 
-<!-- ![lsblk after mounting](images/lsblk-post-mount.png) -->
-
+```shell
+lsblk
 ```
-[root@archboot /]# lsblk
+
+```text
 NAME   MAJ:MIN RM   SIZE RO TYPE MOUNTPOINTS
 sda      8:0    0   128G  0 disk 
 ├─sda1   8:1    0     2M  0 part 
@@ -206,23 +210,35 @@ zram0   251:0   0     5G  0 disk /
 {{< /alert >}}
 
 To disable package signing, edit the file `/etc/pacman.conf` and comment out the line with `SigLevel = Required DatabaseOptional` (comment so you can easily reenable it later) and add a new line with `SigLevel = Never`:
-![Alt text](images/disable-package-signing.png)
+
+```text
+#SigLevel = Required DatabaseOptional
+SigLevel = Never
+```
 
 ### Installing essential packages
 
-`pacstrap` is the tool used to install the packages you want for your new setup.
+`pacstrap` is a tool that comes with Arch Linux to install the initial packages you want for your new setup. At a minimum, you need these packages:
+
+```shell
+pacstrap /mnt base linux grub efibootmgr terminus-font
+```
+
+I've added `terminus-font` as a minimum for Archboot, otherwise the rest of the process will fail. For vanilla Arch Linux, `terminus-font` is not required.
+
+I prefer to install a few more packages, but of note is `terminus-font` because it doesn't get auto-installed correctly via Archboot, and will cause errors when the linux image is being generated. `dhcpcd` will allow us later to connect to the network with DHCP.
+
+Here's the full `pacstrap` command with all packages I like to install to the mounted root partition `/mnt`.
 
 ```shell
 pacstrap /mnt base base-devel linux grub efibootmgr bash-completion dhcpcd vim terminus-font git
 ```
 
-{{< alert icon="fire" cardColor="#e63946" iconColor="#1d3557" textColor="#f1faee" >}}
-**Warning:** For Archboot ARM, you may see errors when installing the `linux` package via `pacstrap` as it tries to execute `mkinitcpio`. This is broken in Archboot. We'll fix it later.
-
-Here we're installing package to our mounted root partition `/mnt`. We're installing a few basic packages, but of note is `terminus-font` because it doesn't get auto-installed correctly via Arch Linux ARM's `base` package, and will cause errors when the linux image is being generated. `dhcpcd` will allow us later to connect to the network with DHCP.
-{{< /alert >}}
-
 This will take some time to install, depending on your internet connection. Once complete, we can move on to the next step, where we're configure the system.
+
+{{< alert >}}
+**Note:** For Archboot ARM, you may see errors when installing the `linux` package via `pacstrap` as it tries to execute `mkinitcpio`. You can ignore these.
+{{< /alert >}}
 
 ### Configure the installation
 
@@ -289,7 +305,7 @@ mkinitcpio -P
 
 Enter this command to set the password for the `root` user:
 
-```
+```shell
 passwd
 ```
 
@@ -321,7 +337,7 @@ grub-mkconfig -o /boot/grub/grub.cfg
 
 If successful, you should see output similar to this:
 
-```
+```text
 Generating grub configuration file ...
 Found linux image: /boot/Image
 Warning: os-prober will not be executed to detect other bootable partitions.
@@ -348,14 +364,14 @@ EDITOR=vim visudo # or nano if you prefer
 
 Find this section:
 
-```shell
+```text
 ## Uncomment to allow members of group wheel to execute any command
 # %wheel ALL=(ALL:ALL) ALL
 ```
 
 and uncomment this line:
 
-```shell
+```text
 %wheel ALL=(ALL:ALL) ALL
 ```
 
@@ -385,7 +401,7 @@ As a quick example, you can enable DHCP. First, get the name of your network int
 
 `/etc/systemd/network/20-wired.network`:
 
-```shell
+```text
 [Match]
 Name=enp0s5
 
