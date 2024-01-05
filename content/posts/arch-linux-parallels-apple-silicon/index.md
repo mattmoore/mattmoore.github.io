@@ -287,7 +287,13 @@ Finally, set your hostname in `/etc/hostname`.
 I also mentioned earlier that package signing is broken in the current release of Archboot ARM, and we had already disabled it for the live ISO. But after `arch-chroot` we have to disable it again for the installed (not the live ISO) system.
 
 To disable package signing, we do the same thing as before. Edit the file `/etc/pacman.conf` and comment out the line with `SigLevel = Required DatabaseOptional` (comment so you can easily reenable it later) and add a new line with `SigLevel = Never`:
-![Alt text](images/disable-package-signing.png)
+
+```text
+#SigLevel = Required DatabaseOptional
+SigLevel = Never
+```
+
+Then save and exit.
 
 ### Initramfs (Installing the Linux kernel)
 
