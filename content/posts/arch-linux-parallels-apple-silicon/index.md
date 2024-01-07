@@ -104,8 +104,7 @@ You can create partitions now. The up/down arrow keys allow you to move up and d
 
 Make sure your partition types are set correctly. At minimum, you should have:
 
-- `BIOS Boot` - Set this to `2m`
-- `EFI System` - Set this to at least 300m. I typically allocate 512m.
+- `EFI System` - Set this to 512m.
 - `Linux swap` - I have this set to `8g`. What number you select depends on your use-cases. [Here's a decent article explaining swap sizes](https://opensource.com/article/19/2/swap-space-poll).
 - `Linux root (ARM-64)` - Remaining space of the drive.
 
@@ -125,10 +124,9 @@ fdisk -l
 
 ```text
 Device        Start       End   Sectors   Size Type
-/dev/sda1      2048      6143      4096     2M BIOS boot
-/dev/sda2      6142   1054719   1048576   512M EFI System
-/dev/sda3   1054720  17831935  16777216     8G Linux swap
-/dev/sda4  17831936 268433407 250601472 119.5G Linux root (ARM-64)
+/dev/sda1      2048   1050623   1048576   512M EFI System
+/dev/sda2   1050624  17827839  16777216     8G Linux swap
+/dev/sda3  17827840 268433407 250605568 119.5G Linux root (ARM-64)
 ```
 
 ### Format the partitions
@@ -191,10 +189,9 @@ lsblk
 ```text
 NAME   MAJ:MIN RM   SIZE RO TYPE MOUNTPOINTS
 sda      8:0    0   128G  0 disk 
-├─sda1   8:1    0     2M  0 part 
-├─sda2   8:2    0   512M  0 part /mnt/boot
-├─sda3   8:3    0     8G  0 part [SWAP]
-└─sda4   8:4    0 119.5G  0 part /mnt
+├─sda1   8:1    0   512M  0 part /mnt/boot
+├─sda2   8:2    0     8G  0 part [SWAP]
+└─sda3   8:3    0 119.5G  0 part /mnt
 sr0      11:0   1 342.3M  0 rom
 zram0   251:0   0     5G  0 disk /
 ```
@@ -221,18 +218,10 @@ SigLevel = Never
 `pacstrap` is a tool that comes with Arch Linux to install the initial packages you want for your new setup. At a minimum, you need these packages:
 
 ```shell
-pacstrap /mnt base linux grub efibootmgr terminus-font
+pacstrap /mnt base base-devel linux grub efibootmgr bash-completion dhcpcd neovim terminus-font git
 ```
 
-I've added `terminus-font` as a minimum for Archboot, otherwise the rest of the process will fail. For vanilla Arch Linux, `terminus-font` is not required.
-
-I prefer to install a few more packages, but of note is `terminus-font` because it doesn't get auto-installed correctly via Archboot, and will cause errors when the linux image is being generated. `dhcpcd` will allow us later to connect to the network with DHCP.
-
-Here's the full `pacstrap` command with all packages I like to install to the mounted root partition `/mnt`.
-
-```shell
-pacstrap /mnt base base-devel linux grub efibootmgr bash-completion dhcpcd vim terminus-font git
-```
+I've added `terminus-font` as a minimum for Archboot, otherwise the rest of the process will fail. For vanilla Arch Linux, `terminus-font` is not required. For Archboot,`terminus-font` has to be installed separately because it doesn't get auto-installed correctly via Archboot, and will cause errors when the linux image is being generated. `dhcpcd` will allow us later to connect to the network with DHCP.
 
 This will take some time to install, depending on your internet connection. Once complete, we can move on to the next step, where we're configure the system.
 
@@ -365,7 +354,7 @@ Enter your password twice.
 Now, you probably want to grant your new user the ability to execute commands with `sudo`. To do so, let's edit the `/etc/sudoers` file:
 
 ```shell
-EDITOR=vim visudo # or nano if you prefer
+EDITOR=nvim visudo # or nano if you prefer
 ```
 
 Find this section:
@@ -383,27 +372,12 @@ and uncomment this line:
 
 Then save the file and close it.
 
-### Reboot
 
-Your system is now installed! Exit the `arch-chroot` environment with `exit` command or `Ctrl + D`. Then you can simply type `reboot` and the VM should reboot.
+### Configure VM network (get on the internet)
 
-### Log in to your new VM
+You can use all sorts of tools for network configuration. The current default for Arch Linux is [systemd-networkd](https://wiki.archlinux.org/title/Systemd-networkd). You can follow that Arch Wiki article for examples of configurations.
 
-Once it reboots, you'll momentarily see this screen:
-
-![Grub boot menu](images/grub-boot-menu.png)
-
-You can let the timer run to auto-select `Arch Linux` or press enter to start it without waiting for the boot countdown. Once booted, you should see the login screen:
-
-![Arch login screen](images/arch-login-screen.png)
-
-Use the username and password you set when creating your account. You can also log in as `root` user, but that's not recommended.
-
-### Connect the VM to the host network (get on the internet)
-
-You can use all sorts of tools for network configuration. The current default for Arch Linux is [systemd-networkd](https://wiki.archlinux.org/title/Systemd-networkd). You can follow that Arch Wiki article to get set up.
-
-As a quick example, you can enable DHCP. First, get the name of your network interface with `ip link` command, which should return you something like `enp0s5` (in my case). Then you can configure DHCP for the network interface like this:
+For my VM, I'm going to enable DHCP. First, get the name of your network interface with `ip link` command, which should return you something like `enp0s5` (in my case). Then you can configure DHCP for the network interface like this:
 
 `/etc/systemd/network/20-wired.network`:
 
@@ -421,7 +395,23 @@ Once you've configured `systemd-networkd`, you'll want to next enable it as well
 sudo systemctl enable systemd-networkd dhcpcd
 ```
 
-Finally, reboot with `sudo reboot`. After reboot, once you log in, you should be online. You can test with a ping:
+### Reboot
+
+Your system is now installed! Exit the `arch-chroot` environment with `exit` command or `Ctrl + D`. Then you can simply type `reboot` and the VM should reboot.
+
+### Log in to your new VM
+
+Once it reboots, you'll momentarily see this screen:
+
+![Grub boot menu](images/grub-boot-menu.png)
+
+You can let the timer run to auto-select `Arch Linux` or press enter to start it without waiting for the boot countdown. Once booted, you should see the login screen:
+
+![Arch login screen](images/arch-login-screen.png)
+
+Use the username and password you set when creating your account. You can also log in as `root` user, but that's not recommended.
+
+You should be online in the VM, if your network configuration was correctly set up. You can test with a ping:
 
 ```shell
 ping archlinux.org
@@ -429,11 +419,36 @@ ping archlinux.org
 
 ### Update Arch Linux
 
-Now we want to update Arch Linux to the latest:
+To ensure Arch Linux is updated to the latest:
 
 ```shell
-pacman -Syu
+pacman -Syyu
 ```
+
+### Install `yay`
+
+[yay](https://github.com/Jguer/yay) is an AUR (Arch User Repository) helper. You'll want to install it for easy automated installations from the AUR.
+
+```shell
+git clone https://aur.archlinux.org/yay.git
+cd yay
+makepkg -si
+```
+
+Verify `yay`:
+
+```shell
+yay --version
+```
+
+Clean up:
+
+```shell
+cd ..
+rm -rf yay
+```
+
+`yay` takes the same options as `pacman` but whereas you run `sudo pacman`, never run `sudo yay`. Just run `yay` without `sudo`. This is for security reasons, as AUR scripts shouldn't be trusted by default.
 
 ### Install Parallels Tools
 
