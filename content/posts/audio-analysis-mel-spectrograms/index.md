@@ -3,6 +3,9 @@ title: "Audio analysis: Mel Spectrograms"
 summary: "Frequency analysis in audio signals."
 date: 2024-01-13T10:48:59-05:00
 draft: false
+tags:
+    - "audio"
+    - "digital signal processing"
 ---
 
 ## Waveform
@@ -25,6 +28,8 @@ Notice the X axis here represents frequency, and the Y axis represents magnitude
 
 ## Spectrogram
 
+### Amplitude
+
 While the discrete FFT above gave us the magnitude of each frequency, we lost the time information. To preserve as much information as possible for real-world practical audio processing, we need to preserve these 3 dimensions of the audio signal:
 
 - Time
@@ -39,11 +44,13 @@ To do this, we can create what is called a "spectrogram". In a spectrogram the 3
 
 Here's an example:
 
-{{< alert >}}
-**Note:** It may be difficult to see on this page - if you click the link below to view the jupyter notebook full-page and zoom in a bit it might be easier - but there are frequencies in the graph. They're so faint on this spectrogram that it's difficult to tell without looking closely.
-{{< /alert >}}
+{{< notebook "posts/audio-analysis-mel-spectrograms/jupyter/spectrogram-amp" 950 >}}
 
-{{< notebook "posts/audio-analysis-mel-spectrograms/jupyter/spectrogram" 950 >}}
+### Decibels
+
+You might notice the spectrogram above is rather hard to see. This is because we're measuring raw amplitude/magnitude (the "power" of the signal). To make it easier to see, let's standardize this to decibels, which is the standard way to measure audio volume. Librosa has a function for this called `power_to_db` which we'll use:
+
+{{< notebook "posts/audio-analysis-mel-spectrograms/jupyter/spectrogram-db" 950 >}}
 
 ## Mel Spectrogram
 
@@ -51,9 +58,11 @@ So far we've created a spectrogram to represent the magnitude of each frequency 
 
 For humans, whenever the pitch of a sound (frequency) changes, we can generally tell that it has changed. However, our ability to hear the difference in pitch is not the same across all frequencies. We can discriminate changes more easily on the lower end of the frequency spectrum, but on the higher end of the frequency spectrum, our ability to differentiate between pitches is noticeably reduced.
 
-In other words, our ability to perceive differences in pitch across the spectrum of frequencies is not linear; it is logarithmic.
+In other words, our ability to perceive differences across frequencies is not linear; it is logarithmic.
 
 What this means then is that we need to normalize (adjust) the frequency representation to something that more closely resembles the human perception of the frequencies and the changes in frequencies. This is done with a "mel-spectrogram". "Mel" is short for "melody".
+
+In the spectrogram above (with decibels) we have a lot of frequencies showing up - including many that humans don't perceive very readily. The mel spectrogram will allow us to adjust to show the frequencies that are more readily perceivable by humans.
 
 Here's how we do that:
 
@@ -64,3 +73,5 @@ Here the dimensions represented are:
 - X axis for time
 - Y axis for frequency
 - Heatmap for magnitude, but here I've also converted it from raw amplitude to decibels, the standard for measuring volume.
+
+With the mel-spectrogram you'll notice more dark areas. This is because we've filtered out the frequencies that humans can't perceive as well, leaving behind the frequencies that are more perceivable by humans.
