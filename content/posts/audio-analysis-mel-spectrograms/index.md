@@ -47,7 +47,7 @@ Here's an example:
 
 ## Mel Spectrogram
 
-So far we've created a spectrogram to represent the magnitude of each frequency in the audio signal over time. However, there is one final step needed because of a rather interesting psychological phenomenon in humans called "frequency discrimination".
+So far we've created a spectrogram to represent the magnitude of each frequency in the audio signal over time. However, there is one final step needed because of a rather interesting neurological phenomenon in humans called "frequency discrimination".
 
 For humans, whenever the pitch of a sound (frequency) changes, we can generally tell that it has changed. However, our ability to hear the difference in pitch is not the same across all frequencies. We can discriminate changes more easily on the lower end of the frequency spectrum, but on the higher end of the frequency spectrum, our ability to differentiate between pitches is noticeably reduced.
 
