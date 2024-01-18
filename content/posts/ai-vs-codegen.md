@@ -2,6 +2,9 @@
 title: "My Thoughts on AI Codegen"
 summary: "AI codegen (GPT) is a distraction from the actual challenges in software engineering."
 date: 2023-12-24T12:38:18-05:00
+tags:
+    - "ai"
+    - "ml"
 draft: false
 ---
 
