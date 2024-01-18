@@ -2,6 +2,9 @@
 title: "Arch Linux Hyprland"
 summary: "Install and configure Hyprland in Arch Linux."
 date: 2024-01-07T08:26:08-05:00
+tags:
+    - "linux"
+    - "arch linux"
 draft: false
 ---
 

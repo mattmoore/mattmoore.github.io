@@ -2,6 +2,9 @@
 title: "Arch Linux Parallels VM on M1 (Apple Silicon)"
 summary: "Install Arch Linux on Parallels VM with Apple Silicon"
 date: 2024-01-03T08:42:52-05:00
+tags:
+    - "linux"
+    - "arch linux"
 draft: false
 ---
 

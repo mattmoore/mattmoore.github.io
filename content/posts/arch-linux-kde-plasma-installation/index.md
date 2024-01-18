@@ -2,6 +2,9 @@
 title: "Arch Linux KDE Plasma Installation"
 summary: "Install KDE Plasma on Arch Linux"
 date: 2024-01-03T15:00:15-05:00
+tags:
+    - "linux"
+    - "arch linux"
 draft: false
 ---
 

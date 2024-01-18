@@ -2,6 +2,9 @@
 title: "Arch Linux XRDP KDE"
 summary: "Install xrdp on Arch Linux KDE"
 date: 2024-01-03T15:31:27-05:00
+tags:
+    - "linux"
+    - "arch linux"
 draft: false
 ---
 
