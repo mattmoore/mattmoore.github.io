@@ -221,10 +221,10 @@ SigLevel = Never
 `pacstrap` is a tool that comes with Arch Linux to install the initial packages you want for your new setup. At a minimum, you need these packages:
 
 ```shell
-pacstrap /mnt base base-devel linux grub efibootmgr bash-completion dhcpcd neovim terminus-font git
+pacstrap /mnt base base-devel linux grub efibootmgr bash-completion neovim terminus-font git
 ```
 
-I've added `terminus-font` as a minimum for Archboot, otherwise the rest of the process will fail. For vanilla Arch Linux, `terminus-font` is not required. For Archboot,`terminus-font` has to be installed separately because it doesn't get auto-installed correctly via Archboot, and will cause errors when the linux image is being generated. `dhcpcd` will allow us later to connect to the network with DHCP.
+I've added `terminus-font` as a minimum for Archboot, otherwise the rest of the process will fail. For vanilla Arch Linux, `terminus-font` is not required. For Archboot,`terminus-font` has to be installed separately because it doesn't get auto-installed correctly via Archboot, and will cause errors when the linux image is being generated.
 
 This will take some time to install, depending on your internet connection. Once complete, we can move on to the next step, where we're configure the system.
 
@@ -392,10 +392,10 @@ Name=enp0s5
 DHCP=yes
 ```
 
-Once you've configured `systemd-networkd`, you'll want to next enable it as well as `dhcpcd` so the VM will get connected to the network automatically upon boot:
+Once you've configured `systemd-networkd`, you'll want to next enable it as well as `systemd-resolved` so the VM will get connected to the network automatically upon boot:
 
 ```shell
-sudo systemctl enable systemd-networkd dhcpcd
+sudo systemctl enable systemd-networkd systemd-resolved
 ```
 
 ### Reboot
