@@ -392,6 +392,12 @@ Name=enp0s5
 DHCP=yes
 ```
 
+Now link `systemd-resolved` to `/etc/resolv.conf`:
+
+```shell
+sudo ln -sf /run/systemd/resolve/stub-resolv.conf /etc/resolv.conf
+```
+
 Once you've configured `systemd-networkd`, you'll want to next enable it as well as `systemd-resolved` so the VM will get connected to the network automatically upon boot:
 
 ```shell
