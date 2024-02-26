@@ -10,14 +10,6 @@
 {{ end }}
 {{- end -}}
 
- <script>
-      var oid = "views_{{ .File.Path }}"
-      var oid_likes = "likes_{{ .File.Path }}"
-    </script>
-    {{ $jsPage := resources.Get "js/page.js" }}
-    {{ $jsPage = $jsPage | resources.Minify | resources.Fingerprint "sha512" }}
-    <script type="text/javascript" src="{{ $jsPage.RelPermalink }}" integrity="{{ $jsPage.Data.Integrity }}"></script>
-
 {{ $toc := and (.Params.showTableOfContents | default (.Site.Params.list.showTableOfContents | default false)) (in
 .TableOfContents "<ul") }} <header>
   {{ if .Params.showBreadcrumbs | default (.Site.Params.list.showBreadcrumbs | default false) }}
@@ -27,6 +19,15 @@
   <div class="mt-1 mb-2 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
     {{ partial "article-meta/list.html" (dict "context" . "scope" "single") }}
   </div>
+  {{ with .File }}
+  <script>
+    var oid = "views_{{ .Path }}"
+    var oid_likes = "likes_{{ .Path }}"
+  </script>
+  {{ end }}
+  {{ $jsPage := resources.Get "js/page.js" }}
+  {{ $jsPage = $jsPage | resources.Minify | resources.Fingerprint "sha512" }}
+  <script type="text/javascript" src="{{ $jsPage.RelPermalink }}" integrity="{{ $jsPage.Data.Integrity }}"></script>
   </header>
   <section class="{{ if $toc -}}
       mt-12
@@ -35,7 +36,8 @@
     {{- end }} prose flex max-w-full flex-col dark:prose-invert lg:flex-row">
     {{ if $toc }}
     <div class="order-first px-0 lg:order-last lg:max-w-xs ltr:lg:pl-8 rtl:lg:pr-8">
-      <div class="toc ltr:pl-5 rtl:pr-5 lg:sticky lg:top-10">
+      <div class="toc ltr:pl-5 rtl:pr-5 lg:sticky {{ if hasPrefix .Site.Params.header.layout "fixed" -}}
+      lg:top-[140px]{{ else }}lg:top-10{{ end }}">
         {{ partial "toc.html" . }}
       </div>
     </div>
@@ -44,11 +46,14 @@
       {{ .Content | emojify }}
     </div>
    
+
+
+
   </section>
   {{ if gt .Pages 0 }}
 
     {{ $cardView := .Params.cardView | default (.Site.Params.list.cardView | default false) }}
-    {{ $cardViewScreenWidth := .Site.Params.list.cardViewScreenWidth | default false }}
+    {{ $cardViewScreenWidth := .Params.cardViewScreenWidth | default (.Site.Params.list.cardViewScreenWidth | default false) }}
     {{ $groupByYear := .Params.groupByYear | default ($.Site.Params.list.groupByYear | default false) }}
 
     {{ if not $cardView }}

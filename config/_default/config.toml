@@ -2,7 +2,7 @@
 # Refer to the theme docs for more details about each of these parameters.
 # https://blowfish.page/docs/getting-started/
 
-theme = "blowfish"
+theme = "blowfish-2.58.0"
 baseURL = "https://mattmoore.io"
 defaultContentLanguage = "en"
 
