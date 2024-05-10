@@ -5,7 +5,7 @@ showDate: false
 
 Lead engineer at [Xebia Functional](https://xebia.com/) (formerly [47 Degrees](https://www.47deg.com)).
 
-I am passionate about quality software and functional programming and advanced type systems; from my experience, these two paradigms tend to lead to higher quality software.
+I am passionate about quality software, functional programming and advanced type systems; in my experience, these two paradigms tend to lead to higher quality software.
 
 I can be contacted by email: matt@mattmoore.io.
 
