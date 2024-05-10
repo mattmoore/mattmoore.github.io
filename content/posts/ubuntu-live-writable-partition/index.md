@@ -50,4 +50,4 @@ Now you can format the data partition with `mkfs.exfat`:
 sudo mkfs.exfat /dev/sda2
 ```
 
-Once this is done, you'll be able to mount the partition `/dev/sda2` and read from and write to it right from within the Ubuntu live session, which is running from the same drive, from the ISO image that you initially wrote to `/dev/sda1`. Whatever you save on `/dev/sda2` will be persisted and can be read from any other OS, including other Linux distros, macOS and Windows, as they all support the ExFAT format.
+Once this is done, you'll be able to mount the partition `/dev/sda2` and read from and write to it right from within the Ubuntu live session, which is running from the same drive, from the ISO image that you initially wrote to `/dev/sda1`. Whatever you save on `/dev/sda2` will be persisted and can be read from any other OS - including other Linux distros, macOS and Windows - as they all support the ExFAT format.
